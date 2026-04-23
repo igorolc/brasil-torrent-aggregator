@@ -103,8 +103,16 @@ def test_extraction(query):
         print("[-] FALHA: Nenhum magnet link encontrado.")
 
 if __name__ == "__main__":
-    # Testando com o filme que o BeTor não encontra
-    test_extraction("Todo Tempo Que Temos")
-    print("\n")
-    # Testando com um exemplo que funciona (The Boys) para comparar
-    test_extraction("The Boys")
+    import sys
+    
+    # Se passar via argumento (ex: python script.py "The Boys")
+    if len(sys.argv) > 1:
+        query = " ".join(sys.argv[1:])
+    else:
+        # Se não, pede no terminal
+        query = input("Digite o nome do filme ou série que deseja buscar: ")
+    
+    if query:
+        test_extraction(query)
+    else:
+        print("Nenhuma busca realizada.")
