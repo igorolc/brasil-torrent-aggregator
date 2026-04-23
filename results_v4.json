@@ -1,0 +1,64 @@
+{
+    "time": "Friday, 17-Apr-26 21:55:23 UTC",
+    "build": {
+        "revision": "unknown",
+        "version": "unknown"
+    },
+    "indexer_names": [
+        "comando_torrents",
+        "bludv",
+        "torrent-dos-filmes",
+        "filme_torrent",
+        "rede_torrent",
+        "vaca_torrent",
+        "starck-filmes"
+    ],
+    "endpoints": {
+        "/indexers/{indexer_name}": [
+            {
+                "method": "GET",
+                "description": "Indexer expoint for the specified indexer",
+                "query_params": {
+                    "audio": "filter by audio languages (comma separated, e.g. por,eng,brazilian)",
+                    "filter_results": "if results with similarity equals to zero should be filtered (true/false)",
+                    "imdb": "filter by imdb ID (e.g. tt1234567) - this ONLY FILTERTS results, for searching by IMDB ID use the \"q\" parameter",
+                    "limit": "maximum number of results to return",
+                    "page": "page number",
+                    "q": "search query",
+                    "sortBy": "sort by field (title, original_title, year, date, seed_count, leech_count, size, similarity)",
+                    "sortDirection": "sort direction (asc or desc, default: desc)",
+                    "year": "filter by year (e.g. 2020)"
+                }
+            }
+        ],
+        "/indexers/manual": [
+            {
+                "method": "POST",
+                "description": "Add a manual torrent entry to the indexer for 12 hours",
+                "body": {
+                    "magnetLink": "magnet link"
+                }
+            },
+            {
+                "method": "GET",
+                "description": "Get all manual torrents"
+            }
+        ],
+        "/search": [
+            {
+                "method": "GET",
+                "description": "Search for cached torrents across all indexers",
+                "query_params": {
+                    "limit": "maximum number of results to return (default: 10)",
+                    "q": "search query"
+                }
+            }
+        ],
+        "/ui/": [
+            {
+                "method": "GET",
+                "description": "Show the unified search UI (only work if Meilisearch is enabled)"
+            }
+        ]
+    }
+}
